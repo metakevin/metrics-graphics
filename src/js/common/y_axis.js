@@ -268,6 +268,11 @@ function addNumericalLabels (g, args, axisArgs) {
   var coords = labelPlacement(args, axisArgs);
   var ticks = args.processed[ns + '_ticks'];
 
+  if (ns == 'y') {
+    var yax_format = mg_compute_yax_format(args);  
+    ticks = ticks.map(yax_format);
+  }
+
   var labels = g.selectAll('.mg-yax-labels')
     .data(ticks).enter()
     .append('text')
